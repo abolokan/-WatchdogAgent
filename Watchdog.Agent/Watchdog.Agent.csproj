@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-WatchdogAgent-af82132d-bb63-4401-90e2-0ed1bfb9438c</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+	 <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.8" />
+	 <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.8" />
+	 <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.8" />
+	 <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+	 <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+	 <PackageReference Include="TaskScheduler" Version="2.12.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Install-Watchdog.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
