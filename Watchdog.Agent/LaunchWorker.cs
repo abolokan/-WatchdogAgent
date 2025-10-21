@@ -11,8 +11,8 @@ public class LaunchWorker(ILogger<LaunchWorker> logger, IOptions<WatchdogOptions
 
     public override async Task StartAsync(CancellationToken cancellationToken)
     {
-        await base.StartAsync(cancellationToken);
         _logger.LogInformation("{worker} started.", _options.Name);
+        await base.StartAsync(cancellationToken);       
     }
 
     public override async Task StopAsync(CancellationToken cancellationToken)

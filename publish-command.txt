@@ -1,0 +1,22 @@
+Команда для публикации Watchdog Agent:
+
+dotnet publish Watchdog.Agent/Watchdog.Agent.csproj -c Release -r win-x64 --self-contained true -o published/Watchdog.Agent --source https://api.nuget.org/v3/index.json
+
+Объяснение параметров:
+- -c Release          : Конфигурация Release (оптимизированная)
+- -r win-x64          : Целевая платформа Windows x64
+- --self-contained    : Включает все зависимости .NET (не нужен runtime на целевом ПК)
+- -o published/Watchdog.Agent : Папка вывода
+- --source https://api.nuget.org/v3/index.json : Использовать только официальный NuGet источник
+
+Альтернативные варианты:
+
+1. Для Framework-dependent (нужен .NET 9.0 Runtime на целевом ПК):
+dotnet publish Watchdog.Agent/Watchdog.Agent.csproj -c Release -o published/Watchdog.Agent --source https://api.nuget.org/v3/index.json
+
+2. Для разных архитектур:
+dotnet publish Watchdog.Agent/Watchdog.Agent.csproj -c Release -r win-x86 --self-contained true -o published/Watchdog.Agent-x86 --source https://api.nuget.org/v3/index.json
+dotnet publish Watchdog.Agent/Watchdog.Agent.csproj -c Release -r win-arm64 --self-contained true -o published/Watchdog.Agent-arm64 --source https://api.nuget.org/v3/index.json
+
+
+dotnet publish Watchdog.Agent/Watchdog.Agent.csproj -c Release -r win-x64 --self-contained true -o published/Watchdog.Agent-arm64 --source https://api.nuget.org/v3/index.json

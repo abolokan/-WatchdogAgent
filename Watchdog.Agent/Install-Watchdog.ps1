@@ -2,6 +2,13 @@
 # Install-Watchdog.ps1
 # ===============================
 
+# Check and set execution policy if needed
+$currentPolicy = Get-ExecutionPolicy -Scope CurrentUser
+if ($currentPolicy -eq "Restricted") {
+    Write-Host "Setting execution policy to RemoteSigned for current user..."
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+}
+
 # Configuration
 $ServiceName = "WatchdogAgent"
 $DisplayName = "Watchdog Agent"
