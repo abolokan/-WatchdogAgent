@@ -25,13 +25,33 @@ if (-not (Test-Path $ExePath)) {
 # Check if the service already exists
 $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
 
-if ($service -eq $null) {
-    # Create the service using sc.exe (arguments must be separate)
-    & sc.exe create $ServiceName binPath= "`"$ExePath`"" DisplayName= "`"$DisplayName`"" start= auto
-    Write-Host "Service '$ServiceName' created successfully."
-} else {
-    Write-Host "Service '$ServiceName' already exists."
+if ($service -ne $null) {
+    Write-Host "Service '$ServiceName' already exists. Stopping and removing it..."
+    
+    # Stop the service if it's running
+    if ($service.Status -eq "Running") {
+        try {
+            Stop-Service -Name $ServiceName -Force -ErrorAction Stop
+            Write-Host "Service '$ServiceName' stopped successfully."
+            Start-Sleep -Seconds 2  # Give it time to stop
+        } catch {
+            Write-Warning "Could not stop service '$ServiceName'. Error: $_"
+        }
+    }
+    
+    # Delete the existing service
+    try {
+        & sc.exe delete $ServiceName
+        Write-Host "Service '$ServiceName' deleted successfully."
+        Start-Sleep -Seconds 1  # Give it time to delete
+    } catch {
+        Write-Warning "Could not delete service '$ServiceName'. Error: $_"
+    }
 }
+
+# Create the service using sc.exe (arguments must be separate)
+& sc.exe create $ServiceName binPath= "`"$ExePath`"" DisplayName= "`"$DisplayName`"" start= auto
+Write-Host "Service '$ServiceName' created successfully."
 
 # Configure infinite automatic restart on failure (every failure restarts after 5 seconds)
 sc.exe failure $ServiceName reset= 0 actions= restart/5000
