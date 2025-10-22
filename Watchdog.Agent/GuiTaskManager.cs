@@ -28,7 +28,7 @@ public class GuiTaskManager(ILogger<GuiTaskManager> logger)
         task.RegistrationInfo.Description = service.Decsription;
 
         task.Triggers.Add(new LogonTrigger());
-        task.Actions.Add(new ExecAction(service.ExePath));
+        task.Actions.Add(new ExecAction($"\"{service.ExePath }\""));
         task.Principal.LogonType = TaskLogonType.InteractiveToken;
 
         ts.RootFolder.RegisterTaskDefinition(taskName, task);
