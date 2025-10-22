@@ -481,39 +481,10 @@ ModelManifest.xml
 # Ignore the bower_components folder (it should be regenerated when required)
 bower_components/
 
-
-#Ignore the original ASP project
-/AMM-ASP
-/SunnyTraining
-/Training
-/AMM_Net/Scripts/kendo/2016.1.112
-
-/AMM_Net/Configs
-
 /build/git-version
 /.sonarqube
-/AMM.UI/.scannerwork
-/AMM.UI/coverage
-/dotCover
-/dotCover.html
-/NUnitResults.xml
-/AMM.UI/eslintcache
+/published
 
-#Ignore App_Data
-/Amm_Net/App_Data
-
-#Ignore corespondene attachments
-/AMM_Net/Content/attachments
-/AMM_Net/Content/uploads/confirminator/import
-AMM_Net/crm-ui/**
-AMM_Net/strata-ui/**
-AMM.Web/AMM.Web.xml
-AMM.Web.Api/AMM.Web.Api.xml
-/AMM_Net/Content/BankAccountDocuments
-/AMM_Net/Documents/ApplicationFormDocuments
-.local-chromium
-AMM.UI/documentation.json
-/AMM_Net/Documents
 .vscode/launch.json
 .vscode/tasks.json
 .vscode/settings.json
